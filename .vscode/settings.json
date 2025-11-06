@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "One Pice Impel Down.sln"
+    "dotnet.defaultSolution": "One-Pice-Impel-Down.sln"
 }
