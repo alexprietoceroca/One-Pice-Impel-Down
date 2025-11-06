@@ -488,8 +488,8 @@ Transform:
   m_GameObject: {fileID: 1291083551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.45801, y: 0, z: 658.16364}
-  m_LocalScale: {x: 154.62209, y: 247.84027, z: 1}
+  m_LocalPosition: {x: 38.45801, y: -4, z: 658.16364}
+  m_LocalScale: {x: 51.187744, y: 83.267914, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -604,7 +604,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 57.745644, y: 60.081333, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 599743802}
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e08542429cbafc41bfbcea6fc17d08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mov_Personaje
-  vel: 5
+  velocidad: 5
   alturaNormal: 2
   alturaAgachado: 1
 --- !u!1660057539 &9223372036854775807
