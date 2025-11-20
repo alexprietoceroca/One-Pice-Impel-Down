@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1680
     height: 959
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 104
+  controlID: 112
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -320,7 +320,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 08dcfffff4e8ffff1eebffff6ef0ffff3ef1ffff14fbffff
+      m_ExpandedIDs: 14fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -440,7 +440,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -458,7 +459,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: b0230000
     m_LastClickedID: 9136
-    m_ExpandedIDs: 00000000d6ac0000d8ac0000daac0000dcac0000deac0000
+    m_ExpandedIDs: 00000000f4e70000f6e70000f8e70000fae70000fce70000fee70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -487,7 +488,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d6ac0000d8ac0000daac0000dcac0000deac0000
+    m_ExpandedIDs: 00000000f4e70000f6e70000f8e70000fae70000fce70000fee70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1026,9 +1027,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -21.66262, y: 1.5084516, z: -38.71231}
+    m_Target: {x: -11.174396, y: -0.20627825, z: -79.730484}
     speed: 2
-    m_Value: {x: -21.66262, y: 1.5084516, z: -38.71231}
+    m_Value: {x: -11.174396, y: -0.20627825, z: -79.730484}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1074,13 +1075,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.00084988214, y: 0.9818543, z: -0.18965252, w: -0.00443432}
+    m_Target: {x: 0.029768163, y: -0.35321462, z: 0.011193882, w: 0.9350264}
     speed: 2
-    m_Value: {x: -0.00084988214, y: 0.9818543, z: -0.18965253, w: -0.00443432}
+    m_Value: {x: -0.029768163, y: 0.35321462, z: -0.011193882, w: -0.9350264}
   m_Size:
-    m_Target: 5.231877
+    m_Target: 2.6579175
     speed: 2
-    m_Value: 5.231877
+    m_Value: 2.6579175
   m_Ortho:
     m_Target: 0
     speed: 2
