@@ -5,7 +5,7 @@ public class Menu_Inicial : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("Mapa_Principal");
+        SceneManager.LoadScene("Escena_1");
     }
 
     public void Salir()
