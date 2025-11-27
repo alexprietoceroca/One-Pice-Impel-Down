@@ -5,8 +5,8 @@ public class NauJugador : MonoBehaviour
 {
     public float velocidad = 7f;
     public float velocidadAgachado = 4f;
-    public float alturaNormal = 2f;
-    public float alturaAgachado = 1f;
+    public float alturaNormal = 3f;
+    public float alturaAgachado = 2f;
     public float sensibilidadMouse = 500f;
 
     private bool agachado = false;
