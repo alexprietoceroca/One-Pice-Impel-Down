@@ -1,67 +1,124 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class DetectorPuerta : MonoBehaviour
 {
-    [Header("REFERENCIAS UI")]
-    public Button botonPuerta;           // El botón que aparecerá
-    public GameObject textoInstruccion;  // Texto opcional de instrucción
-    
-    [Header("CONFIGURACIÓN ESCENA")]
+    [Header("CONFIGURACIÓN")]
     public string nombreEscenaDestino = "sala_3_final";
+    public KeyCode teclaInteraccion = KeyCode.E;
     
-    [Header("AJUSTES DE DETECCIÓN")]
-    public bool ocultarAlSalir = true;   // Ocultar botón al salir del área
-    public float retrasoMostrar = 0.3f;  // Pequeño retraso para evitar parpadeos
-    public bool usarTeclaE = true;       // Permitir activar con tecla E
+    [Header("REFERENCIAS VISUALES")]
+    public GameObject indicadorUI;        // Texto "Presiona E para entrar"
+    public Renderer rendererObjeto;       // Para cambiar color/material
+    public Material materialBloqueado;
+    public Material materialDesbloqueado;
     
-    [Header("FEEDBACK VISUAL")]
-    public Color colorNormal = Color.blue;
-    public Color colorActivado = Color.green;
-    public Material materialActivado;    // Material opcional para cambiar al detectar
+    [Header("SONIDOS")]
+    public AudioSource audioSource;
+    public AudioClip sonidoBloqueado;
+    public AudioClip sonidoDesbloqueado;
+    public AudioClip sonidoActivacion;
     
-    // Variables internas
     private bool jugadorEnRango = false;
-    private bool botonVisible = false;
-    private Renderer objetoRenderer;
-    private Material materialOriginal;
+    private bool puertaDesbloqueada = false;
     
     void Start()
     {
-        // Obtener referencia al renderer para cambiar color/material
-        objetoRenderer = GetComponent<Renderer>();
-        if (objetoRenderer != null)
+        // Obtener referencia al renderer si no está asignado
+        if (rendererObjeto == null)
         {
-            materialOriginal = objetoRenderer.material;
+            rendererObjeto = GetComponent<Renderer>();
         }
         
-        // Configurar estado inicial
-        if (botonPuerta != null)
+        // Ocultar indicador UI al inicio
+        if (indicadorUI != null)
         {
-            botonPuerta.gameObject.SetActive(false);
-            botonPuerta.interactable = false;
-            // Configurar el evento del botón
-            botonPuerta.onClick.AddListener(CambiarEscena);
+            indicadorUI.SetActive(false);
         }
         
-        if (textoInstruccion != null)
-        {
-            textoInstruccion.SetActive(false);
-        }
+        // Estado inicial: puerta bloqueada
+        ActualizarEstadoPuerta();
         
-        Debug.Log($"DetectorPuerta inicializado. Escena destino: {nombreEscenaDestino}");
-        
-        // Verificar que la escena existe
-        VerificarEscenaDestino();
+        Debug.Log("Puerta inicializada. Estado: " + (puertaDesbloqueada ? "DESBLOQUEADA" : "BLOQUEADA"));
     }
     
     void Update()
     {
-        // Opción alternativa: activar con tecla E si está en rango
-        if (usarTeclaE && jugadorEnRango && !botonVisible && Input.GetKeyDown(KeyCode.E))
+        // Si el jugador está en rango y la puerta está desbloqueada
+        if (jugadorEnRango && puertaDesbloqueada)
         {
-            MostrarBotonPuerta();
+            // Mostrar indicador UI
+            if (indicadorUI != null && !indicadorUI.activeSelf)
+            {
+                indicadorUI.SetActive(true);
+            }
+            
+            // Detectar tecla E para cambiar de escena
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                CambiarEscena();
+            }
+        }
+        else
+        {
+            // Ocultar indicador si no se cumplen las condiciones
+            if (indicadorUI != null && indicadorUI.activeSelf)
+            {
+                indicadorUI.SetActive(false);
+            }
+        }
+        
+        // Verificar constantemente si la puerta se ha desbloqueado
+        VerificarEstadoDesbloqueo();
+    }
+    
+    void VerificarEstadoDesbloqueo()
+    {
+        // Actualizar estado según GameManager
+        bool nuevoEstado = GameManager.Instance.PuertaDesbloqueada();
+        
+        if (nuevoEstado != puertaDesbloqueada)
+        {
+            puertaDesbloqueada = nuevoEstado;
+            ActualizarEstadoPuerta();
+            
+            // Reproducir sonido apropiado
+            if (audioSource != null)
+            {
+                if (puertaDesbloqueada)
+                {
+                    if (sonidoDesbloqueado != null)
+                        audioSource.PlayOneShot(sonidoDesbloqueado);
+                }
+                else
+                {
+                    if (sonidoBloqueado != null)
+                        audioSource.PlayOneShot(sonidoBloqueado);
+                }
+            }
+        }
+    }
+    
+    void ActualizarEstadoPuerta()
+    {
+        // Cambiar apariencia visual según estado
+        if (rendererObjeto != null)
+        {
+            if (puertaDesbloqueada)
+            {
+                if (materialDesbloqueado != null)
+                    rendererObjeto.material = materialDesbloqueado;
+                else
+                    rendererObjeto.material.color = Color.green;
+            }
+            else
+            {
+                if (materialBloqueado != null)
+                    rendererObjeto.material = materialBloqueado;
+                else
+                    rendererObjeto.material.color = Color.red;
+            }
         }
     }
     
@@ -71,12 +128,15 @@ public class DetectorPuerta : MonoBehaviour
         {
             jugadorEnRango = true;
             Debug.Log("Jugador entró en área de puerta");
-            
-            // Cambiar feedback visual
-            CambiarFeedbackVisual(true);
-            
-            // Mostrar botón con pequeño retraso para evitar parpadeos
-            Invoke(nameof(MostrarBotonPuerta), retrasoMostrar);
+            indicadorUI.SetActive(true);
+            // Si la puerta está bloqueada, mostrar mensaje
+            if (!puertaDesbloqueada)
+            {
+                Debug.Log("Puerta bloqueada - Busca la pista primero");
+                
+                // Opcional: Mostrar mensaje temporal
+                // StartCoroutine(MostrarMensajeTemporal("¡Encuentra la pista primero!"));
+            }
         }
     }
     
@@ -87,84 +147,15 @@ public class DetectorPuerta : MonoBehaviour
             jugadorEnRango = false;
             Debug.Log("Jugador salió del área de puerta");
             
-            // Restaurar feedback visual
-            CambiarFeedbackVisual(false);
-            
-            // Ocultar botón si está configurado
-            if (ocultarAlSalir && botonVisible)
+            // Ocultar indicador UI
+            if (indicadorUI != null)
             {
-                OcultarBotonPuerta();
+                indicadorUI.SetActive(false);
             }
         }
     }
     
-    void MostrarBotonPuerta()
-    {
-        // Solo mostrar si el jugador sigue en rango
-        if (!jugadorEnRango || botonVisible) return;
-        
-        if (botonPuerta != null)
-        {
-            botonPuerta.gameObject.SetActive(true);
-            botonPuerta.interactable = true;
-            botonVisible = true;
-            
-            Debug.Log($"Botón de puerta mostrado. Preparado para: {nombreEscenaDestino}");
-            
-            // Feedback opcional: sonido, animación, etc.
-        }
-        
-        if (textoInstruccion != null)
-        {
-            textoInstruccion.SetActive(true);
-        }
-    }
-    
-    void OcultarBotonPuerta()
-    {
-        if (botonPuerta != null && botonVisible)
-        {
-            botonPuerta.gameObject.SetActive(false);
-            botonPuerta.interactable = false;
-            botonVisible = false;
-            Debug.Log("Botón de puerta ocultado");
-        }
-        
-        if (textoInstruccion != null)
-        {
-            textoInstruccion.SetActive(false);
-        }
-    }
-    
-    void CambiarFeedbackVisual(bool activado)
-    {
-        if (objetoRenderer == null) return;
-        
-        if (activado)
-        {
-            if (materialActivado != null)
-            {
-                objetoRenderer.material = materialActivado;
-            }
-            else
-            {
-                objetoRenderer.material.color = colorActivado;
-            }
-        }
-        else
-        {
-            if (materialOriginal != null)
-            {
-                objetoRenderer.material = materialOriginal;
-            }
-            else
-            {
-                objetoRenderer.material.color = colorNormal;
-            }
-        }
-    }
-    
-    void CambiarEscena()
+   public  void CambiarEscena()
     {
         if (string.IsNullOrEmpty(nombreEscenaDestino))
         {
@@ -172,87 +163,72 @@ public class DetectorPuerta : MonoBehaviour
             return;
         }
         
-        Debug.Log($"Iniciando cambio a escena: {nombreEscenaDestino}");
+        Debug.Log("Cambiando a escena: " + nombreEscenaDestino);
         
-        // Verificar que la escena existe
-        if (!EscenaExiste(nombreEscenaDestino))
+        // Reproducir sonido de activación
+        if (audioSource != null && sonidoActivacion != null)
         {
-            Debug.LogError($"Escena '{nombreEscenaDestino}' no encontrada en Build Settings");
-            MostrarEscenasDisponibles();
-            return;
+            audioSource.PlayOneShot(sonidoActivacion);
         }
         
-        // Aquí puedes añadir efectos de transición si quieres
-        // Ejemplo: StartCoroutine(TransicionYCambio());
-        
-        // Cambiar escena directamente
-        SceneManager.LoadScene(nombreEscenaDestino);
+        // Verificar si la escena existe
+        if (EscenaExiste(nombreEscenaDestino))
+        {
+            // Cambiar de escena
+            SceneManager.LoadScene(nombreEscenaDestino);
+        }
+        else
+        {
+            Debug.LogError("Escena no encontrada: " + nombreEscenaDestino);
+            MostrarEscenasDisponibles();
+        }
     }
     
-    bool EscenaExiste(string nombreEscena)
+    bool EscenaExiste(string nombre)
     {
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            string rutaEscena = SceneUtility.GetScenePathByBuildIndex(i);
-            string nombre = System.IO.Path.GetFileNameWithoutExtension(rutaEscena);
+            string ruta = SceneUtility.GetScenePathByBuildIndex(i);
+            string nombreEscena = System.IO.Path.GetFileNameWithoutExtension(ruta);
             
-            if (nombre == nombreEscena)
+            if (nombreEscena == nombre)
                 return true;
         }
         return false;
     }
     
-    void VerificarEscenaDestino()
-    {
-        if (!EscenaExiste(nombreEscenaDestino))
-        {
-            Debug.LogWarning($"Advertencia: Escena '{nombreEscenaDestino}' no encontrada en Build Settings");
-            Debug.Log("Escenas disponibles:");
-            MostrarEscenasDisponibles();
-        }
-    }
-    
     void MostrarEscenasDisponibles()
     {
+        Debug.Log("Escenas disponibles:");
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            string rutaEscena = SceneUtility.GetScenePathByBuildIndex(i);
-            string nombre = System.IO.Path.GetFileNameWithoutExtension(rutaEscena);
-            Debug.Log($"  [{i}] {nombre}");
+            string ruta = SceneUtility.GetScenePathByBuildIndex(i);
+            string nombre = System.IO.Path.GetFileNameWithoutExtension(ruta);
+            Debug.Log($"- {nombre}");
         }
     }
     
     // Para debug visual en el editor
     void OnDrawGizmos()
     {
-        if (!Application.isPlaying)
-        {
-            Gizmos.color = colorNormal;
-        }
-        else
-        {
-            Gizmos.color = jugadorEnRango ? colorActivado : colorNormal;
-        }
-        
         Collider collider = GetComponent<Collider>();
         if (collider != null)
         {
+            if (puertaDesbloqueada)
+            {
+                Gizmos.color = Color.green;
+            }
+            else
+            {
+                Gizmos.color = Color.red;
+            }
+            
             if (collider is BoxCollider boxCollider)
             {
                 Gizmos.matrix = transform.localToWorldMatrix;
                 Gizmos.DrawWireCube(boxCollider.center, boxCollider.size);
                 Gizmos.matrix = Matrix4x4.identity;
             }
-        }
-    }
-    
-    // Mostrar información en pantalla (debug)
-    void OnGUI()
-    {
-        if (Debug.isDebugBuild)
-        {
-            GUI.Label(new Rect(10, 100, 300, 20), $"Player_Detecter: Jugador en rango: {jugadorEnRango}");
-            GUI.Label(new Rect(10, 120, 300, 20), $"Botón visible: {botonVisible}");
         }
     }
 }

@@ -7,9 +7,6 @@ public class Interaccion_boton : MonoBehaviour
     [Header("REFERENCIAS UI")]
     public GameObject proximityPrompt;    // Panel "E Interact"
     public GameObject panelPista;         // Panel con la pista
-    public Button botonPuerta;            // Botón para cambiar de escena
-    
-    [Header("BOTÓN CERRAR PISTA")]
     public Button botonCerrarPista;       // Botón X para cerrar panel
     
     [Header("REFERENCIA CLUE DETECTOR")]
@@ -19,7 +16,6 @@ public class Interaccion_boton : MonoBehaviour
     public float distanciaInteraccion = 3f;
     
     [HideInInspector] public bool jugadorEnRango = false;
-    private bool pistaVista = false;      // Para controlar si ya vio la pista
     
     void Start()
     {
@@ -29,18 +25,12 @@ public class Interaccion_boton : MonoBehaviour
             clueDetector = GetComponent<Clue_Detector>();
         }
         
-        // Ocultar todos los elementos UI al inicio
+        // Ocultar UI al inicio
         if (proximityPrompt != null)
             proximityPrompt.SetActive(false);
             
         if (panelPista != null)
             panelPista.SetActive(false);
-            
-        if (botonPuerta != null)
-        {
-            botonPuerta.gameObject.SetActive(false);
-            botonPuerta.interactable = false;
-        }
         
         // Configurar botón de cerrar pista
         if (botonCerrarPista != null)
@@ -59,14 +49,15 @@ public class Interaccion_boton : MonoBehaviour
             jugadorEnRango = clueDetector.playerCanPressE;
         }
         
-        // Actualizar prompt UI
+        // Actualizar prompt UI (solo mostrar si la pista no ha sido vista)
         if (proximityPrompt != null)
         {
-            proximityPrompt.SetActive(jugadorEnRango && !pistaVista);
+            bool mostrarPrompt = jugadorEnRango && !GameManager.Instance.pistaVista;
+            proximityPrompt.SetActive(mostrarPrompt);
         }
         
-        // Detectar tecla E para abrir pista
-        if (jugadorEnRango && Keyboard.current.eKey.wasPressedThisFrame && !pistaVista)
+        // Detectar tecla E para abrir pista (solo si no se ha visto)
+        if (jugadorEnRango && Keyboard.current.eKey.wasPressedThisFrame && !GameManager.Instance.pistaVista)
         {
             AbrirPanelPista();
         }
@@ -83,20 +74,15 @@ public class Interaccion_boton : MonoBehaviour
         if (panelPista != null)
         {
             panelPista.SetActive(true);
-            pistaVista = true;
-            Debug.Log("Panel de pista abierto");
+            
+            // MARCAR LA PISTA COMO VISTA EN EL GAME MANAGER
+            GameManager.Instance.MarcarPistaVista();
+            
+            Debug.Log("Panel de pista abierto - Puerta ahora está desbloqueada");
             
             // Ocultar prompt
             if (proximityPrompt != null)
                 proximityPrompt.SetActive(false);
-            
-            // Activar botón de puerta
-            if (botonPuerta != null)
-            {
-                botonPuerta.gameObject.SetActive(true);
-                botonPuerta.interactable = true;
-                Debug.Log("Botón de puerta ACTIVADO - Listo para cambiar a escena");
-            }
         }
     }
     
@@ -106,9 +92,6 @@ public class Interaccion_boton : MonoBehaviour
         {
             panelPista.SetActive(false);
             Debug.Log("Panel de pista cerrado");
-            
-            // El botón de puerta PERMANECE visible después de ver la pista
-            // No lo ocultamos porque el jugador necesita poder pulsarlo
         }
     }
     
@@ -117,8 +100,8 @@ public class Interaccion_boton : MonoBehaviour
     {
         if (Debug.isDebugBuild)
         {
-            GUI.Label(new Rect(10, 10, 300, 20), $"Pista vista: {pistaVista}");
-            GUI.Label(new Rect(10, 30, 300, 20), $"Botón puerta activo: {botonPuerta != null && botonPuerta.gameObject.activeSelf}");
+            GUI.Label(new Rect(10, 10, 300, 20), $"Pista vista: {GameManager.Instance.pistaVista}");
+            GUI.Label(new Rect(10, 30, 300, 20), $"Jugador en rango pista: {jugadorEnRango}");
         }
     }
 }
