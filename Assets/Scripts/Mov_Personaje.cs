@@ -37,6 +37,7 @@ public class Mov_Personaje : MonoBehaviour
     void Start()
     {
           fadeInMuerte.gameObject.SetActive(false);
+          transform.rotation = Quaternion.Euler(0f, 180, 0f);
     }
     void Update()
     {
@@ -124,12 +125,13 @@ public class Mov_Personaje : MonoBehaviour
         CameraPj.localPosition = Vector3.Lerp(posActual, posObjetivo, Time.deltaTime * velocidadTransicion);
     }
 
-    void ControlarCamara()
+    void ControlarCamara() //el personaje gira en la Y. 
     {
         var raton = Mouse.current;
         if (raton == null) return;
-
-        if (raton.rightButton.isPressed)
+        
+  
+        if (raton.rightButton.isPressed) // esto de aqui al haerel primer click rota al personaje. 
         {
             Vector2 delta = raton.delta.ReadValue();
 
@@ -141,8 +143,10 @@ public class Mov_Personaje : MonoBehaviour
 
             rotacionX = Mathf.Clamp(rotacionX, -80f, 80f);
 
-            CameraPj.localRotation = Quaternion.Euler(rotacionX, 0f, 0f);
-            transform.rotation = Quaternion.Euler(0f, rotacionY, 0f);
+            CameraPj.localRotation = Quaternion.Euler(rotacionX, 0f, 0f); 
+            transform.rotation = Quaternion.Euler(0f, rotacionY+180, 0f);
+            
+           
         }
     }
     public void ResetPosition()
