@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 80968353}
   m_Layer: 0
   m_Name: character
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +230,52 @@ CapsuleCollider:
   m_Height: 2.0464754
   m_Direction: 1
   m_Center: {x: 0, y: 1.3342265, z: -0}
+--- !u!1 &205396953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205396955}
+  - component: {fileID: 205396954}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &205396954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205396953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7addae743bc695547848408aef44f01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  pistaVista: 0
+  indicadorPuerta: {fileID: 1787271512}
+--- !u!4 &205396955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205396953}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.04708, y: -9.44417, z: -379.6186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &414004484
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +422,7 @@ GameObject:
   - component: {fileID: 486382420}
   - component: {fileID: 486382419}
   m_Layer: 5
-  m_Name: TextoInteraccion
+  m_Name: TextoPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,10 +442,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1700848227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &486382419
 MonoBehaviour:
@@ -423,7 +469,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -508,7 +554,7 @@ GameObject:
   - component: {fileID: 790116193}
   - component: {fileID: 790116192}
   m_Layer: 0
-  m_Name: Puerta_Escena1
+  m_Name: puerta sala.001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,10 +695,10 @@ GameObject:
   m_Component:
   - component: {fileID: 946105685}
   - component: {fileID: 946105688}
-  - component: {fileID: 946105689}
-  - component: {fileID: 946105690}
+  - component: {fileID: 946105687}
+  - component: {fileID: 946105686}
   m_Layer: 0
-  m_Name: ColliderPista
+  m_Name: Player_Dect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,6 +719,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1405852877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946105686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946105684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85db3620cb60795498816e5b1a135605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interaccion_boton
+  proximityPrompt: {fileID: 1700848226}
+  panelPista: {fileID: 1312170512}
+  botonCerrarPista: {fileID: 1964084916}
+  clueDetector: {fileID: 946105687}
+  distanciaInteraccion: 3
+  jugadorEnRango: 0
+--- !u!114 &946105687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946105684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7982dc265a5a9114fa82a8a305b2da93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Clue_Detector
+  panelPista: {fileID: 0}
+  mensajePista: "\xA1Pista encontrada! Esta es la correcta."
+  esPistaCorrecta: 0
+  panelInteraccion: {fileID: 0}
+  textoInteraccion: {fileID: 0}
+  puertaParaDesbloquear: {fileID: 0}
 --- !u!65 &946105688
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -694,36 +776,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &946105689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946105684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7982dc265a5a9114fa82a8a305b2da93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectorPista
-  panelPista: {fileID: 1312170512}
-  mensajePista: Esta es una pista
-  esPistaCorrecta: 1
-  panelInteraccion: {fileID: 1700848226}
-  textoInteraccion: {fileID: 486382419}
-  puertaParaDesbloquear: {fileID: 1536392242}
---- !u!114 &946105690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946105684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d61ad27aa87b22f48929e0e591936454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DebugEstado
 --- !u!65 &1249650579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -809,10 +861,8 @@ GameObject:
   - component: {fileID: 1312170513}
   - component: {fileID: 1312170515}
   - component: {fileID: 1312170514}
-  - component: {fileID: 1312170516}
-  - component: {fileID: 1312170517}
   m_Layer: 5
-  m_Name: PanelPista_Escena1
+  m_Name: PanelPista
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -859,8 +909,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b3b81c51e71b7c84c9dbc61042439d35, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -877,16 +927,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312170512}
   m_CullTransparentMesh: 1
---- !u!114 &1312170516
+--- !u!1 &1320793917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1320793919}
+  - component: {fileID: 1320793918}
+  m_Layer: 0
+  m_Name: GestorEscenas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1320793918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312170512}
+  m_GameObject: {fileID: 1320793917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e84e115a9d470394cbd96d37dd248290, type: 3}
+  m_Script: {fileID: 11500000, guid: 10d9ca5bb3cfc8d438e5ed8dc004ff8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   nombreEscenaDestino: Escena_2
@@ -899,12 +966,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312170512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d61ad27aa87b22f48929e0e591936454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DebugEstado
+  m_GameObject: {fileID: 1320793917}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.3231, y: -7.72047, z: -371.64066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1347438910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +1070,7 @@ GameObject:
   - component: {fileID: 1405852874}
   - component: {fileID: 1405852873}
   m_Layer: 0
-  m_Name: Pista_Escena1
+  m_Name: pista
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1018,6 +1088,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20380beb0554ab24d84a9db50eb3f075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  distanciaInteraccion: 3
+  teclaInteraccion: 101
+  gestorEscenas: {fileID: 0}
 --- !u!65 &1405852874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1225,9 +1298,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1536392239}
   - component: {fileID: 1536392241}
-  - component: {fileID: 1536392242}
+  - component: {fileID: 1536392240}
   m_Layer: 0
-  m_Name: ColliderPuerta
+  m_Name: Player_Detecter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1261,15 +1334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DetectorPuerta
   nombreEscenaDestino: Escena_2
-  teclaInteraccion: 101
-  indicadorUI: {fileID: 1787271512}
-  rendererObjeto: {fileID: 0}
-  materialBloqueado: {fileID: 0}
-  materialDesbloqueado: {fileID: 0}
-  audioSource: {fileID: 0}
-  sonidoBloqueado: {fileID: 0}
-  sonidoDesbloqueado: {fileID: 0}
-  sonidoActivacion: {fileID: 0}
+  requierePista: 1
+  panelInteraccion: {fileID: 0}
+  textoInteraccion: {fileID: 0}
 --- !u!65 &1536392241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1291,22 +1358,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1536392242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536392238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 675b2417f9506a94d80cb0bbc8fea97d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectorPuerta
-  nombreEscenaDestino: Escena_2
-  requierePista: 1
-  panelInteraccion: {fileID: 1700848226}
-  textoInteraccion: {fileID: 486382419}
 --- !u!1 &1694569034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,14 +1423,13 @@ GameObject:
   - component: {fileID: 1700848230}
   - component: {fileID: 1700848229}
   - component: {fileID: 1700848228}
-  - component: {fileID: 1700848231}
   m_Layer: 5
-  m_Name: PanelInteraccion
+  m_Name: ProximityPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1700848227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1397,8 +1447,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 300, y: 80}
+  m_AnchoredPosition: {x: 0, y: 207.8461}
+  m_SizeDelta: {x: 220, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1700848228
 MonoBehaviour:
@@ -1453,18 +1503,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700848226}
   m_CullTransparentMesh: 1
---- !u!114 &1700848231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700848226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d61ad27aa87b22f48929e0e591936454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DebugEstado
 --- !u!1 &1703687214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,13 +2207,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1312170516}
-        m_TargetAssemblyTypeName: PanelPistaController, Assembly-CSharp
-        m_MethodName: CerrarPanel
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2584,3 +2622,5 @@ SceneRoots:
   - {fileID: 1522270208}
   - {fileID: 1703687217}
   - {fileID: 1405852877}
+  - {fileID: 1320793919}
+  - {fileID: 205396955}
