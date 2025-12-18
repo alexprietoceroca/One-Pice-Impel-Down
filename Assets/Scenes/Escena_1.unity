@@ -346,7 +346,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pista 1
+  m_Text: "Te encuentras en una de las carceles m\xE1s segura del universo de One
+    Piece llamada Impel Down. Actualmente estas en el primer piso de la carcel y
+    para salir vas a tener que ir avanzando."
 --- !u!222 &414004487
 CanvasRenderer:
   m_ObjectHideFlags: 0
