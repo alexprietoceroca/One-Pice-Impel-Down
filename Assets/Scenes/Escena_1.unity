@@ -888,11 +888,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e84e115a9d470394cbd96d37dd248290, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PanelPistaController
-  textoPista: {fileID: 414004486}
-  botonCerrar: {fileID: 1964084916}
---- !u!114 &1312170517
-MonoBehaviour:
+  m_EditorClassIdentifier: '::'
+  nombreEscenaDestino: Escena_2
+  botonPuerta: {fileID: 0}
+  botonesDesbloqueables: []
+  usarPlayerPrefs: 1
+--- !u!4 &1320793919
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1240,12 +1242,34 @@ Transform:
   m_GameObject: {fileID: 1536392238}
   serializedVersion: 2
   m_LocalRotation: {x: 0.99999994, y: -0, z: -0, w: -0.00045368078}
-  m_LocalPosition: {x: 0.00008, y: -0.0053, z: 0.0011}
+  m_LocalPosition: {x: 0.00008, y: -0.00413, z: 0.0011}
   m_LocalScale: {x: -0.018241715, y: -0.007825055, z: -0.0166173}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 790116191}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1536392240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536392238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675b2417f9506a94d80cb0bbc8fea97d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectorPuerta
+  nombreEscenaDestino: Escena_2
+  teclaInteraccion: 101
+  indicadorUI: {fileID: 1787271512}
+  rendererObjeto: {fileID: 0}
+  materialBloqueado: {fileID: 0}
+  materialDesbloqueado: {fileID: 0}
+  audioSource: {fileID: 0}
+  sonidoBloqueado: {fileID: 0}
+  sonidoDesbloqueado: {fileID: 0}
+  sonidoActivacion: {fileID: 0}
 --- !u!65 &1536392241
 BoxCollider:
   m_ObjectHideFlags: 0
