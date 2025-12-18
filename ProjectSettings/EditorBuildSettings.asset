@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Escena_2.unity
     guid: b130c021d64e39b4f9b596c4491a3300
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/sala_3_final.unity
     guid: 78cd704ab70d95b46960278b435d49f0
   m_configObjects:
