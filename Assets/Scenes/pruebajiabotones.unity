@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e08542429cbafc41bfbcea6fc17d08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NauJugador
+  puntoInicio: {fileID: 0}
   velocidad: 5
   velocidadAgachado: 4
   velocidadSuelo: 2
@@ -295,6 +296,9 @@ MonoBehaviour:
   velocidadTransicion: 5
   CameraPj: {fileID: 1689048811}
   playerCapsule: {fileID: 1259297408}
+  velocidadCalculada: 0
+  timerRespawn: 1.2
+  fadeInMuerte: {fileID: 0}
 --- !u!4 &141650903
 Transform:
   m_ObjectHideFlags: 0
@@ -1288,6 +1292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   nombreEscenaDestino: sala_3_final
   botonPuerta: {fileID: 0}
+  botonesDesbloqueables: []
+  usarPlayerPrefs: 1
 --- !u!4 &1230966994
 Transform:
   m_ObjectHideFlags: 0
@@ -1500,6 +1506,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369233490}
   m_CullTransparentMesh: 1
+--- !u!1001 &1571891340
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -34.14774
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -38.23875
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -338.8546
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
+      propertyPath: m_Name
+      value: escenario_ruben
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d7ad9ffbc84eda4da9b8b6074b7998a, type: 3}
 --- !u!1 &1606945452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,6 +2008,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20380beb0554ab24d84a9db50eb3f075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  distanciaInteraccion: 3
+  teclaInteraccion: 101
+  gestorEscenas: {fileID: 0}
 --- !u!1 &2075680601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,3 +2215,4 @@ SceneRoots:
   - {fileID: 1928817058}
   - {fileID: 1230966994}
   - {fileID: 514341292}
+  - {fileID: 1571891340}
