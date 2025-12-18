@@ -335,12 +335,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 30
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -861,6 +861,10 @@ GameObject:
   - component: {fileID: 1312170513}
   - component: {fileID: 1312170515}
   - component: {fileID: 1312170514}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1312170516}
+>>>>>>> origin/main
   m_Layer: 5
   m_Name: PanelPista
   m_TagString: Untagged
@@ -875,9 +879,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312170512}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.07846, y: 2.07846, z: 2.07846}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 414004485}
@@ -956,6 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9ca5bb3cfc8d438e5ed8dc004ff8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+<<<<<<< HEAD
   nombreEscenaDestino: Escena_2
   botonPuerta: {fileID: 0}
   botonesDesbloqueables: []
@@ -975,6 +980,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  textoPista: {fileID: 0}
+  botonCerrar: {fileID: 0}
+>>>>>>> origin/main
 --- !u!1 &1347438910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1307,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1536392239}
   - component: {fileID: 1536392241}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1536392242}
+>>>>>>> origin/main
   - component: {fileID: 1536392240}
   m_Layer: 0
   m_Name: Player_Detecter
