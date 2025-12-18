@@ -994,7 +994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   pistaVista: 0
-  indicadorPuerta: {fileID: 0}
+  indicadorPuerta: {fileID: 703669268}
 --- !u!4 &572815132
 Transform:
   m_ObjectHideFlags: 0
@@ -2004,7 +2004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DetectorPuerta
   nombreEscenaDestino: sala_3_final
   teclaInteraccion: 101
-  indicadorUI: {fileID: 0}
+  indicadorUI: {fileID: 703669268}
   rendererObjeto: {fileID: 0}
   materialBloqueado: {fileID: 0}
   materialDesbloqueado: {fileID: 0}
